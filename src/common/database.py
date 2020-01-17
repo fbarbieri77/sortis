@@ -3,13 +3,13 @@ __author__ = "Fabio Barbieri"
 import pymongo
 
 class Database(object):
-    URI = 'mongodb://localhost:27017'
+    URI = os.environ.get("MONGODB_URI")
     DATABASE = None
 
     @staticmethod
     def initialize(database_name):
         client = pymongo.MongoClient(Database.URI)
-        Database.DATABASE = client[database_name]
+        Database.DATABASE = client.get_default_database()
 
     @staticmethod
     def insert(collection, data, check_keys=True):
