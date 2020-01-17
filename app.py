@@ -139,6 +139,7 @@ def add_security():
     is_winner_3 = request.form['is_winner_3']
     title_4 = request.form['title_4']
     is_winner_4 = request.form['is_winner_4']
+    is_winner = request.form['is_winner']
 
     prizes = []
     if len(title_1) > 0:
@@ -170,7 +171,7 @@ def add_security():
             'is_checked': False
         })
 
-    security = Security(author, value, prizes)
+    security = Security(author, value, prizes, is_winner)
     security.save_to_mongo()
 
     return render_template('add-security.html')
