@@ -1,6 +1,6 @@
 __author__ = "Fabio Barbieri"
 
-import pymongo
+import pymongo, os
 
 class Database(object):
     URI = os.environ.get("MONGODB_URI")
