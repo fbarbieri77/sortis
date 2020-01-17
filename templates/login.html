@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container" id="login-div">
+        {% if message is not none %}
+            <h3>{{ message }}</h3>
+            {% if message == 'Usuário inválido!' %}
+                <p>Não possue uma conta? Cadastre  <a href="/register">aqui</a> </p>
+            {% endif %}
+        {% endif %}
+        <form id="login-form" action="/auth/login" method="POST">
+            <div class="form-group">
+                <label for="inputEmail1">Endereço de email</label>
+                <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" name="email">
+                <small id="emailHelp" class="form-text text-muted">Nós nunca dividimos o seu email com ninguém.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword1">Senha</label>
+                <input type="password" class="form-control" id="inputPassword1" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+    </div>
+{% endblock %}

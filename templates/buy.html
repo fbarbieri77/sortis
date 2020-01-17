@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h3 class="text-center">Verifique as condições antes de comprar</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Nome</td>
+                    <td>{{ asset.author }}</td>
+                </tr>
+                <tr>
+                    <td>Código do título</td>
+                    <td>{{ asset._id }}</td>
+                </tr>
+                <tr>
+                    <td>Valor</td>
+                    <td>{{ "$%.2f"|format(asset.value) }}</td>
+                </tr>
+                <tr>
+                    <td>Prêmios Raspadinha</td>
+                    <td>
+                        {% for prize in asset.prizes %}
+                            <li class="list-inline-item">
+                                {{ prize.title }}
+                            </li>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% if origin == 'dashboard' %}
+            <a type="submit" class="btn btn-primary" href="/dashboard">Voltar</a>
+        {% else %}
+            <a type="submit" class="btn btn-primary" href="/buy/{{ asset._id }}">Comprar</a>
+        {% endif %}   
+    </div>
+{% endblock %}
+
+
+

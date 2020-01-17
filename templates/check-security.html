@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h3 class="text-center">Título em carteira</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Nome</td>
+                    <td>{{ bet.author }}</td>
+                </tr>
+                <tr>
+                    <td>Código do título</td>
+                    <td>{{ bet._id }}</td>
+                </tr>
+                <tr>
+                    <td>Valor</td>
+                    <td>{{ "$%.2f"|format(bet.value) }}</td>
+                </tr>
+                <tr>
+                    <td>Prêmios Raspadinha</td>
+                    <td>
+                        {% if bet.prizes|length > 0 %}
+                            <div class="media">
+                                <ul class="list-inline">   
+                                    {% if bet.prizes|length > 0 %}
+                                        <div class="media">
+                                            <ul class="list-inline">   
+                                                {% for prize in bet.prizes %}
+                                                    {% if prize.is_checked %}
+                                                        {% if prize.is_winner %}
+                                                            <li class="list-inline-item">
+                                                                <img src="/static/asset/{{ prize.title }}.png" class="mr-3" width="30px" alt="{{ prize.title }}">
+                                                            </li>
+                                                        {% else %}
+                                                            <li class="list-inline-item">
+                                                                <img src="/static/asset/circle-red-x.jpg" class="mr-3" width="30px" alt="">
+                                                            </li>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <li class="list-inline-item">
+                                                            <a type="submit" class="btn btn-light" href="/scratch/{{ bet._id }}&{{ prize.title }}"> <img src="/static/asset/scratch.png" class="mr-3" width="30px" alt="{{ prize.title }}"> </a>
+                                                        </li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Resultado de sorteios</td>
+                    <td>
+                        {% if bet.is_winner %}
+                            <img src="/static/asset/checkmark.jpg" class="mr-3" width="30px" alt="Sorteado"> Você foi sorteado!
+                        {% else %}
+                            Esse bilhete não foi sorteado.
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% if origin == 'dashboard' %}
+            <a type="submit" class="btn btn-primary" href="/dashboard">Voltar</a>
+        {% else %}
+            <a type="submit" class="btn btn-primary" href="/buy/{{ bet._id }}">Comprar</a>
+        {% endif %}
+    </div>
+{% endblock %}

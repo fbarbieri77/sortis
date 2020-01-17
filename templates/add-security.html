@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container" id="add-security-div">
+        <form id="security-form" action="/add-security" method="POST">
+            <div class="form-group">
+                <label for="inputauthor">Autor do título</label>
+                <input type="text" class="form-control" id="inputauthor" name="author">
+            </div>
+            <div class="form-group">
+                <label for="inputvalue">Valor</label>
+                <input type="text" class="form-control" id="inputvalue" name="value">
+            </div>
+
+            <div class="form-group">
+                <label for="inputtitle1">Título 1o prêmio</label>
+                <input type="text" class="form-control" id="inputtitle1" name="title_1">
+            </div>
+            <div class="form-group">
+                <label for="inputwinner1">Bilhete premiado?</label>
+                <input type="text" class="form-control" id="inputwinner1" name="is_winner_1">
+            </div>
+
+            <div class="form-group">
+                <label for="inputtitle2">Título 2o prêmio</label>
+                <input type="text" class="form-control" id="inputtitle2" name="title_2">
+            </div>
+            <div class="form-group">
+                <label for="inputwinner2">Bilhete premiado?</label>
+                <input type="text" class="form-control" id="inputwinner2" name="is_winner_2">
+            </div>
+
+            <div class="form-group">
+                <label for="inputtitle3">Título 3o prêmio</label>
+                <input type="text" class="form-control" id="inputtitle3" name="title_3">
+            </div>
+            <div class="form-group">
+                <label for="inputwinner3">Bilhete premiado?</label>
+                <input type="text" class="form-control" id="inputwinner3" name="is_winner_3">
+            </div>
+
+            <div class="form-group">
+                <label for="inputtitle4">Título 4o prêmio</label>
+                <input type="text" class="form-control" id="inputtitle4" name="title_4">
+            </div>
+            <div class="form-group">
+                <label for="inputwinner4">Bilhete premiado?</label>
+                <input type="text" class="form-control" id="inputwinner4" name="is_winner_4">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+{% endblock %}

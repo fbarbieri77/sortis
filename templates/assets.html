@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h3>Títulos disponíveis</h3>
+        <table class="table table-striped">
+            <thead class="thead">
+              <tr>
+                <th scope="col-md-2">Nome</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Prêmios Raspadinha</th>
+                <th scope="col">Observação</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for bet in bets %}
+                    <tr>
+                    <td>{{ bet.author }}</td>
+                    <td>{{ "$%.2f"|format(bet.value) }}</td>
+                    <td>
+                        {% if bet.prizes|length > 0 %}
+                            <div class="media">
+                                <ul class="list-inline">   
+                                    {% for prize in bet.prizes %}
+                                        <li class="list-inline-item">
+                                            <img src="static/asset/{{ prize.title }}.png" class="mr-3" width="30px" alt="{{ prize.title }}">
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td> 
+                    <td>
+                        <a type="submit" class="btn btn-link" href="/security/{{ bet._id }}&assets">Ver detalhes</a>
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
